@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/cart.php';
+require __DIR__.'/src/cart.php';
 
 $total = getTotalCart([3,4,1]);
 $expected = 8;
