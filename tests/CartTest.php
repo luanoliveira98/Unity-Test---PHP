@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Exception\UnexpectedNonNumericException;
 use PHPUnit\Framework\TestCase;
 
 require __DIR__.'/../src/cart.php';
@@ -30,5 +31,17 @@ class CartTest extends TestCase
         $total = \getTotalCart($items);
         
         $this->assertEquals(0, $total);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldThrowErrorWhenArrayHasANonNumeric()
+    {
+        $items = ['wakanda', 'for', 'ever'];
+
+        $this->expectException(UnexpectedNonNumericException::class);
+
+        $total = \getTotalCart($items);        
     }
 }
