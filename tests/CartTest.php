@@ -19,4 +19,16 @@ class CartTest extends TestCase
         
         $this->assertEquals(8, $total);
     }
+
+    /**
+     * @test
+     */
+    public function shouldReturnZeroWhenArrayIsEmpty()
+    {
+        $items = [];
+
+        $total = \getTotalCart($items);
+        
+        $this->assertEquals(0, $total);
+    }
 }
