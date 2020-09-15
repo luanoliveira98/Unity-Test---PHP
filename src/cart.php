@@ -1,14 +1,18 @@
 <?php
 
-use App\Items;
+namespace App;
 
-function getTotal(Items $itens): int
+class Cart 
 {
-    $total = 0;
-
-    foreach ($itens as $item) {
-        $total += $item->getValue();
+    function getTotal(Items $itens): int
+    {
+        $total = 0;
+    
+        foreach ($itens as $item) {
+            $total += $item->getValue();
+        }
+    
+        return $total;
     }
 
-    return $total;
 }
