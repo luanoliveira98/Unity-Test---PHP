@@ -2,7 +2,9 @@
 
 namespace Tests;
 
-use App\Exception\UnexpectedNonNumericException;
+use App\Cart;
+use App\Item;
+use App\Items;
 use PHPUnit\Framework\TestCase;
 
 require __DIR__.'/../src/Cart.php';
@@ -14,10 +16,17 @@ class CartTest extends TestCase
      */
     public function shouldReturnCorrectCardTotal()
     {
-        $items = [1,3,4];
+        // Arrange
+        $items = new Items;
+        $items->add(new Item("mouse", 1));
+        $items->add(new Item("Macbook", 4));
+        $items->add(new Item("mochila", 3));
 
-        $total = \getTotalCart($items);
+        // Act
+        $cart = new Cart;
+        $total = $cart->getTotal($items);
         
+        // Assert
         $this->assertEquals(8, $total);
     }
 
@@ -26,10 +35,14 @@ class CartTest extends TestCase
      */
     public function shouldReturnZeroWhenArrayIsEmpty()
     {
-        $items = [];
+        // Arrange
+        $items = new Items;
 
-        $total = \getTotalCart($items);
+        // Act
+        $cart = new Cart;
+        $total = $cart->getTotal($items);
         
+        // Assert
         $this->assertEquals(0, $total);
     }
 }
