@@ -1,17 +1,13 @@
 <?php
 
-use App\Exception\UnexpectedNonNumericException;
+use App\Items;
 
-function getTotalCart(array $itens): int
+function getTotal(Items $itens): int
 {
     $total = 0;
 
     foreach ($itens as $item) {
-        if (!is_numeric($item)) {
-            throw new UnexpectedNonNumericException($item);
-        }
-
-        $total += $item;
+        $total += $item->getValue();
     }
 
     return $total;
