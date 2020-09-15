@@ -3,7 +3,7 @@
 namespace Tests;
 
 use App\Cart;
-use App\DeliveryFeeCalculatorDouble;
+use App\DeliveryFeeCalculator;
 use App\Item;
 use App\Items;
 use PHPUnit\Framework\TestCase;
@@ -24,7 +24,7 @@ class CartTest extends TestCase
         $items->add(new Item("mochila", 3));
 
         // Act
-        $feeCalculator = new DeliveryFeeCalculatorDouble();
+        $feeCalculator = $this->createMock(DeliveryFeeCalculator::class);
         $cart = new Cart($feeCalculator);
         $total = $cart->getTotal($items);
         
@@ -41,7 +41,7 @@ class CartTest extends TestCase
         $items = new Items;
 
         // Act
-        $feeCalculator = new DeliveryFeeCalculatorDouble();
+        $feeCalculator = $this->createMock(DeliveryFeeCalculator::class);
         $cart = new Cart($feeCalculator);
         $total = $cart->getTotal($items);
         
