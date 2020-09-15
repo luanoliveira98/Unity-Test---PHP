@@ -11,8 +11,11 @@ class Cart
         foreach ($itens as $item) {
             $total += $item->getValue();
         }
+
+        $deliveryFeeCalculator = new DeliveryFeeCalculator;
+        $fee = $deliveryFeeCalculator->calculateFee();
     
-        return $total;
+        return $total + $fee;
     }
 
 }
