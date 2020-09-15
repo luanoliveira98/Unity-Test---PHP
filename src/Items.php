@@ -34,6 +34,11 @@ class Items implements \Countable, \Iterator
 
     public function rewind()
     {
-        
+        return $this->position = 0;
+    }
+
+    public function valid()
+    {
+        return isset($this->items[$this->position]);
     }
 }
